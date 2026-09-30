@@ -1,0 +1,55 @@
+@ProductsApi_HostAddress = https://localhost:7073
+
+### 1. Obtener todos los productos (Espera 200)
+GET {{ProductsApi_HostAddress}}/api/products
+
+### 2. Buscar por nombre (Etapa 7.1)
+GET {{ProductsApi_HostAddress}}/api/products/search?name=teclado
+
+### 3. Estadísticas (Etapa 7.2)
+GET {{ProductsApi_HostAddress}}/api/products/stats
+
+### 4. (Espera 200)
+GET {{ProductsApi_HostAddress}}/api/products/3
+
+### 5. (Espera 404)
+GET {{ProductsApi_HostAddress}}/api/products/999
+
+### 6. (Espera 201)
+POST {{ProductsApi_HostAddress}}/api/products
+Content-Type: application/json
+
+{
+  "name": "Pad Gamer XL",
+  "price": 12500.00
+}
+
+### 7. (Espera 400 Bad Request)
+POST {{ProductsApi_HostAddress}}/api/products
+Content-Type: application/json
+
+{
+  "name": "",
+  "price": 100
+}
+
+### 8. (Espera 409 Conflict)
+POST {{ProductsApi_HostAddress}}/api/products
+Content-Type: application/json
+
+{
+  "name": "Teclado mecánico",
+  "price": 8500.00
+}
+
+### 9. (Espera 204)
+PUT {{ProductsApi_HostAddress}}/api/products/1
+Content-Type: application/json
+
+{
+  "name": "Mouse inalámbrico Pro",
+  "price": 4500.00
+}
+
+### 10. (Espera 204)
+DELETE {{ProductsApi_HostAddress}}/api/products/2
